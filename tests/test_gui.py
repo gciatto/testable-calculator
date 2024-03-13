@@ -1,3 +1,4 @@
+import os ; os.environ["KIVY_NO_ARGS"] = "1" # hack for making tests loadable in VS Code
 import unittest
 from calculator.ui.gui import CalculatorApp
 
