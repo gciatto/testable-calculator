@@ -8,8 +8,8 @@ class CalculatorGUITestCase(unittest.TestCase):
         self.app = CalculatorApp()
         self.app._run_prepare()
 
-    def press_button(self, name):
-        self.app.button(name).trigger_action()
+    def press_button(self, button_text):
+        self.app.find_button_by(button_text).trigger_action()
 
     def assert_display(self, value):
         self.assertEqual(self.app.display.text, value)   
@@ -36,6 +36,3 @@ class TestExpressions(CalculatorGUITestCase):
         self.assert_display("1.2+2")
         self.press_button("=")
         self.assert_display("3.2")
-
-
-del CalculatorGUITestCase

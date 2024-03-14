@@ -13,14 +13,18 @@ BUTTONS_NAMES = [
 ]
 
 
-def browse_children(widget):
-    yield widget
-    if hasattr(widget, 'children'):
-        for child in widget.children:
-            yield from browse_children(child)
-
-
 class CalculatorApp(App):
+    def _browse_children(self, container):
+        yield container
+        if hasattr(container, 'children'):
+            for child in container.children:
+                yield from self._browse_children(child)
+    
+    def find_button_by(self, text) -> Button:
+        for widget in self._browse_children(self.root):
+            if isinstance(widget, Button) and widget.text == text:
+                return widget
+            
     def build(self):
         self._calc = Calculator()
 
@@ -42,12 +46,6 @@ class CalculatorApp(App):
             grid.add_widget(grid_row)
 
         return grid
-
-    
-    def button(self, text) -> Button:
-        for widget in browse_children(self.root):
-            if isinstance(widget, Button) and widget.text == text:
-                return widget
 
     def on_button_press(self, button):
         match button.text:
