@@ -48,4 +48,4 @@ class TestCalculatorUsage(unittest.TestCase):
         self.calculator.expression = "1+"
         with self.assertRaises(ValueError) as context:
             self.calculator.compute_result()
-        self.assertEqual("Invalid expression: 1+", str(context.exception))
+            self.assertEqual("Invalid expression: 1+", str(context.exception))
