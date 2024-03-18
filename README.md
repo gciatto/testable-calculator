@@ -114,7 +114,7 @@ Name                     Stmts   Miss  Cover   Missing
 ------------------------------------------------------
 calculator\__init__.py      38      3    92%   13, 39, 48
 calculator\ui\cli.py        21      3    86%   16-17, 27
-calculator\ui\gui.py        57      8    86%   57-59, 63, 65, 67, 71, 78
+calculator\ui\gui.py        57      8    86%   55-57, 61, 63, 65, 69, 76
 tests\test_cli.py           15      0   100%
 tests\test_gui.py           30      0   100%
 tests\test_model.py         38      0   100%
