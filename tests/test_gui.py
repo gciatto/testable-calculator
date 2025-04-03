@@ -9,7 +9,10 @@ class CalculatorGUITestCase(unittest.TestCase):
         self.app._run_prepare()
 
     def press_button(self, button_text):
-        self.app.find_button_by(button_text).trigger_action()
+        button = self.app.find_button_by(button_text)
+        if button is None:
+            raise AssertionError(f"Missing button: {button_text}")
+        button.trigger_action()
 
     def assert_button_exists(self, button_text):
         btn = self.app.find_button_by(button_text)
