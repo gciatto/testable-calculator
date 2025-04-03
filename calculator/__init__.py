@@ -37,6 +37,12 @@ class Calculator:
 
     def clear(self):
         self.expression = ""
+
+    def parenthesis(self, open: bool):
+        if open:
+            self._append("(")
+        else:
+            self._append(")")
     
     def compute_result(self) -> Number:
         try:
