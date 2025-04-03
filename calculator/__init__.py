@@ -1,3 +1,6 @@
+from math import *
+
+
 Number = int | float
 
 
@@ -43,6 +46,9 @@ class Calculator:
             self._append("(")
         else:
             self._append(")")
+
+    def square_root(self):
+        self._append("sqrt")
     
     def compute_result(self) -> Number:
         try:
