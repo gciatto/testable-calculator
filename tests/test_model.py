@@ -29,6 +29,20 @@ class TestCalculatorMethods(unittest.TestCase):
         self.calculator.divide()
         self.assertEqual("/", self.calculator.expression)
 
+    def test_open_parethesis(self):
+        self.calculator.parenthesis(open=True)
+        # self.calculator.open_parenthesis()
+        self.assertEqual("(", self.calculator.expression)
+
+    def test_close_parethesis(self):
+        self.calculator.parenthesis(open=False)
+        # self.calculator.close_parenthesis()
+        self.assertEqual(")", self.calculator.expression)
+
+    def test_sqrt(self):
+        self.calculator.square_root()
+        self.assertEqual("sqrt", self.calculator.expression)
+
 
 class TestCalculatorUsage(unittest.TestCase):
     def setUp(self):
@@ -49,3 +63,53 @@ class TestCalculatorUsage(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             self.calculator.compute_result()
         self.assertEqual("Invalid expression: 1+", str(context.exception))
+
+
+class TestComplexExpression(unittest.TestCase):
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_involving_paretheses(self):
+        # (1 + 2) * 3 == 9
+        self.calculator.parenthesis(open=True)
+        self.calculator.digit(1)
+        self.calculator.plus()
+        self.calculator.digit(2)
+        self.calculator.parenthesis(open=False)
+        self.calculator.multiply()
+        self.calculator.digit(3)
+        self.assertEqual("(1+2)*3", self.calculator.expression)
+        result = self.calculator.compute_result()
+        self.assertEqual(9, result)
+        self.assertEqual("9", self.calculator.expression)
+
+    def test_square_root_expression(self):
+        # sqrt(5 - 1) == 2.0
+        self.calculator.square_root()
+        self.calculator.parenthesis(open=True)
+        self.calculator.digit(5)
+        self.calculator.minus()
+        self.calculator.digit(1)
+        self.calculator.parenthesis(open=False)
+        self.assertEqual("sqrt(5-1)", self.calculator.expression)
+        result = self.calculator.compute_result()
+        self.assertEqual(2.0, result)
+        self.assertEqual("2.0", self.calculator.expression)
+
+    def test_power_expression(self):
+        # (4 / 2) ** (5 - 1) == 16
+        self.calculator.parenthesis(open=True)
+        self.calculator.digit(4)
+        self.calculator.divide()
+        self.calculator.digit(2)
+        self.calculator.parenthesis(open=False)
+        self.calculator.power()
+        self.calculator.parenthesis(open=True)
+        self.calculator.digit(5)
+        self.calculator.minus()
+        self.calculator.digit(1)
+        self.calculator.parenthesis(open=False)
+        self.assertEqual("(4/2)**(5-1)", self.calculator.expression)
+        result = self.calculator.compute_result()
+        self.assertEqual(16.0, result)
+        self.assertEqual("16.0", self.calculator.expression)
