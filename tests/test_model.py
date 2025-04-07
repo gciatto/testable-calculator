@@ -95,3 +95,21 @@ class TestComplexExpression(unittest.TestCase):
         result = self.calculator.compute_result()
         self.assertEqual(2.0, result)
         self.assertEqual("2.0", self.calculator.expression)
+
+    def test_power_expression(self):
+        # (4 / 2) ** (5 - 1) == 16
+        self.calculator.parenthesis(open=True)
+        self.calculator.digit(4)
+        self.calculator.divide()
+        self.calculator.digit(2)
+        self.calculator.parenthesis(open=False)
+        self.calculator.power()
+        self.calculator.parenthesis(open=True)
+        self.calculator.digit(5)
+        self.calculator.minus()
+        self.calculator.digit(1)
+        self.calculator.parenthesis(open=False)
+        self.assertEqual("(4/2)**(5-1)", self.calculator.expression)
+        result = self.calculator.compute_result()
+        self.assertEqual(16, result)
+        self.assertEqual("16", self.calculator.expression)
