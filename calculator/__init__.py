@@ -49,6 +49,9 @@ class Calculator:
 
     def square_root(self):
         self._append("sqrt")
+
+    def power(self):
+        self._append("**")
     
     def compute_result(self) -> Number:
         try:

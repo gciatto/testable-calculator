@@ -47,6 +47,11 @@ class CalculatorApp(App):
             grid.add_widget(grid_row)
 
         return grid
+    
+    __replacements = {
+        "sqrt": "√",
+        "**": "^",
+    }
 
     def on_button_press(self, button):
         match button.text:
@@ -76,10 +81,12 @@ class CalculatorApp(App):
                 self._calc.square_root()
                 self._calc.parenthesis(True)
             case "^":
-                ...
+                self._calc.power()
             case _:
                 self._calc.digit(button.text)
-        self.display.text = self._calc.expression.replace("sqrt", "√") or "0"
+        self.display.text = self._calc.expression or "0"
+        for old, new in self.__replacements.items():
+            self.display.text = self.display.text.replace(old, new)
 
 
 if __name__ == '__main__':
