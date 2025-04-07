@@ -111,5 +111,5 @@ class TestComplexExpression(unittest.TestCase):
         self.calculator.parenthesis(open=False)
         self.assertEqual("(4/2)**(5-1)", self.calculator.expression)
         result = self.calculator.compute_result()
-        self.assertEqual(16, result)
-        self.assertEqual("16", self.calculator.expression)
+        self.assertEqual(16.0, result)
+        self.assertEqual("16.0", self.calculator.expression)

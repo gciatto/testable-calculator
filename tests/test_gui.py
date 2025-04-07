@@ -101,4 +101,4 @@ class TestExpressions(CalculatorGUITestCase):
         self.press_button(")")
         self.assert_display("(4/2)^(5-1)")
         self.press_button("=")
-        self.assert_display("16")
+        self.assert_display("16.0")
