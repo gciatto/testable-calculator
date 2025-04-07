@@ -69,11 +69,12 @@ class CalculatorApp(App):
             case "C":
                 self._calc.clear()
             case "(":
-                ...
+                self._calc.parenthesis(True)
             case ")":
-                ...
+                self._calc.parenthesis(False)
             case "√":
-                ...
+                self._calc.square_root()
+                self._calc.parenthesis(True)
             case "^":
                 ...
             case _:
